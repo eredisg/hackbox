@@ -1,5 +1,5 @@
 #!/bin/bash
-apt install jq fzf -y
+sudo apt install jq fzf -y
 cd ~/Downloads
 tb_releases_url='https://data.services.jetbrains.com/products/releases?code=TBA&latest=true&type=release'
 download_url=$(curl --silent $tb_releases_url | jq --raw-output '.TBA[0].downloads.linux.link')
