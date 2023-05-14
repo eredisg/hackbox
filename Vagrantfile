@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
   SHELL
   
   # Create symlink of shared folder
-  #config.vm.provision :shell, inline: "ln -s /media/Development /home/vagrant/Development", run: "once"
+  config.vm.provision :shell, inline: "ln -s /media/Development /home/vagrant/Development", run: "once"
   
   # Copy SSH configs to /home/vagrant/.ssh
   config.vm.provision "file", source: ".ssh", destination: "/home/vagrant/.ssh"
@@ -36,7 +36,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "file", source: "pictures/background.jpg", destination: "/home/vagrant/Pictures/background.jpg"
 
   # Download Burp Suite Pro
-  #config.vm.provision :shell, inline: "wget -O /opt/burp_pro.sh \"https://portswigger-cdn.net/burp/releases/download?product=pro&type=Linux\"", run: "once"
+  config.vm.provision :shell, inline: "wget -O /opt/burp_pro.sh \"https://portswigger-cdn.net/burp/releases/download?product=pro&type=Linux\"", run: "once"
 
   # Install alacritty terminal
   config.vm.provision :shell, inline: "apt install alacritty -y"
