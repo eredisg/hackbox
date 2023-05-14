@@ -29,8 +29,20 @@ Vagrant.configure("2") do |config|
   # Copy .zshrc
   config.vm.provision "file", source: ".zshrc", destination: "/home/vagrant/.zshrc"
   
+  # Copy .tmux.conf
+  config.vm.provision "file", source: ".tmux.conf", destination: "/home/vagrant/.tmux.conf"
+
+  # Copy background image
+  config.vm.provision "file", source: "pictures/background.jpg", destination: "/home/vagrant/Pictures/background.jpg"
+
   # Download Burp Suite Pro
-  config.vm.provision :shell, inline: "wget -O /opt/burp_pro.sh \"https://portswigger-cdn.net/burp/releases/download?product=pro&type=Linux\"", run: "once"
+  #config.vm.provision :shell, inline: "wget -O /opt/burp_pro.sh \"https://portswigger-cdn.net/burp/releases/download?product=pro&type=Linux\"", run: "once"
+
+  # Install alacritty terminal
+  config.vm.provision :shell, inline: "apt install alacritty -y"
+
+  # Run additional app installs
+  config.vm.provision :shell, inline: "xfce4-panel-profiles load ~/.config/xfce-profile.tar.bz2", privileged: false
   
   # Run additional app installs
   config.vm.provision :shell, path: "scripts/install-base.sh", privileged: false
